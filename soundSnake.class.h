@@ -13,13 +13,13 @@ class SoundSnake{
 		audio_device_t current;
 		string error = "";
 	public:
-		bool initSimpleSpeaker(void){
+		bool initSimpleSpeaker(string appName){
         		current.ss.format = PA_SAMPLE_S16NE;
         		current.ss.channels = 2;
         		current.ss.rate = 44100;
         		current.s = pa_simple_new(
 				NULL,            	// Use the default server.
-        			"Fooapp",              	// Our application's name.
+        			appName.c_str(),       // Our application's name.
         		        PA_STREAM_PLAYBACK,   	// Marks which device to read/write from/to
         		        NULL,                 	// Use the default device.
         		        "Music",              	// Description of our stream.
@@ -39,7 +39,6 @@ class SoundSnake{
 		}
 
 		bool playSimpleAudio(char *audioBuf, int bufSize){
-			printf("DEBUG BUFF SIZE : %d\n", bufSize);
 			int e;
 			pa_simple_write(current.s, audioBuf, bufSize, &e);
 			if(e < 0){

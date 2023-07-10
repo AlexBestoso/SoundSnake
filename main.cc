@@ -10,9 +10,9 @@ using namespace std;
 
 #include "./soundSnake.class.h"
 
-int main(){
+int main(int argc, char *argv[]){
 	SoundSnake ss;
-	if(!ss.initSimpleSpeaker()){
+	if(!ss.initSimpleSpeaker(argv[0])){
 		printf("FAiled to setup speaker.\n");
 		return 1;
 	}
